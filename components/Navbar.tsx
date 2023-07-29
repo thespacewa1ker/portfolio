@@ -1,18 +1,43 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export const Navbar = () => {
+  const isClient = typeof window !== 'undefined';
+  const [isMenuOpen, setIsMenuOpen] = useState(isClient ? false : undefined);
+
+  useEffect(() => {
+    // Set the initial state on the client side
+    setIsMenuOpen(false);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <div className="container mx-auto">
-      <nav className="flex items-center justify-between py-4 shadow-md ">
+      <nav className="flex items-center justify-between py-4 shadow-md fixed top-0 left-0 right-0 bg-white z-10">
         <Link href={"/"}>
           <div className="text-primary">
-            {/* <h1 className='font-normal text-primary font-sans'>EcoQuant</h1> */}
             <span className="font-medium text-3xl text-primary ml-4">Eco Quant</span>
           </div>
         </Link>
-        <ul className="flex items-center ml-10">
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleMenu} className="focus:outline-none ml-4">
+            {isMenuOpen ? (
+              <svg className="w-6 h-6 fill-current text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M2.46967 3.46967C2.17678 3.76256 2.17678 4.23744 2.46967 4.53033L20.4697 22.5303C20.7626 22.8232 21.2374 22.8232 21.5303 22.5303C21.8232 22.2374 21.8232 21.7626 21.5303 21.4697L3.53033 3.46967C3.23744 3.17678 2.76256 3.17678 2.46967 3.46967Z" />
+                <path fillRule="evenodd" d="M3.53033 22.5303C3.82322 22.2374 4.29809 22.2374 4.59098 22.5303L22.5909 4.53033C22.8838 4.23744 22.8838 3.76256 22.5909 3.46967C22.2981 3.17678 21.8232 3.17678 21.5303 3.46967L3.53033 21.4697C3.23744 21.7626 3.23744 22.2374 3.53033 22.5303Z" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6 fill-current text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M3 5h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2zm0 8h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2zm0 4h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2z" />
+              </svg>
+            )}
+          </button>
+        </div>
+        <ul className={`md:flex items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
           <li className="mr-8 font-normal text-lg text-sky-600">
             <Link href={"/"} className="hover:text-p-hover">Home</Link>
           </li>
@@ -26,49 +51,20 @@ export const Navbar = () => {
             <Link href={"/faqs"} className="hover:text-p-hover">FAQs</Link>
           </li>
         </ul>
-        <ul className="flex items-center">
-            
-          <a
-            href="https://leetcode.com/nsanjaysanju676/"
-            className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out">
+        <ul className="hidden md:flex items-center">
+          <a href="https://leetcode.com/nsanjaysanju676/" className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out">
             <Image src="/leetcode.svg" width={25} height={20} alt="Gmail"  />
           </a>
-
-          <a
-            href="https://github.com/thespacewa1ker"
-            className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out"
+          <a href="https://github.com/thespacewa1ker" className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out"
           >
             <Image src="/github.svg" width={25} height={25} alt="Gmail" />
           </a>
-
-          <a
-            href="mailto:n.sanjay.imp@gmail.com"
-            className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out"
+          <a href="mailto:n.sanjay.imp@gmail.com" className="hover:bg-pink-300 inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-600 mr-6 transition-colors duration-300 ease-in-out"
           >
             <Image src="/gmail.svg" width={25} height={25} alt="Gmail" />
           </a>
-
         </ul>
       </nav>
-      <style jsx>{`
-        nav {
-          box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
-      <style jsx>{`
-            .container {
-              margin: 0rem auto; /* This will center the container */
-              max-width: 1400px; /* Adjust the maximum width as per your requirement */
-              max-height: 200vh;
-              padding: 1rem 1rem; /* Add some padding on the left and right sides */
-            }
-
-            .content {
-              background-color: #f0f0f0; /* Add a background color for the container */
-              padding: 1rem; /* Add some padding inside the container */
-              
-            }
-          `}</style>
     </div>
   );
 };
