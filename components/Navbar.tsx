@@ -48,7 +48,7 @@ export const Navbar = () => {
             <Link href={"/blogs"} className="hover:text-p-hover">Blogs</Link>
           </li>
           <li className="mr-8 font-normal text-lg text-sky-600">
-            <Link href={"/faqs"} className="hover:text-p-hover">FAQs</Link>
+            <Link href={"/education"} className="hover:text-p-hover">Edu</Link>
           </li>
         </ul>
         <ul className="hidden md:flex items-center">

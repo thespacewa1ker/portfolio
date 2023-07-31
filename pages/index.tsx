@@ -3,9 +3,7 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import type { NextPage } from "next";
 
-
 const inter = Inter({ subsets: ["latin"] });
-
 
 const Home: NextPage = () => {
   return (
@@ -28,8 +26,8 @@ const Home: NextPage = () => {
               I am <span className="text-pink-400">Sanjay</span>
             </p>
             <p className="text-gray-600 hover:text-rose-700 mb-10">
-              I work as a Software Engineer and aspire to become a Quant,
-              based in Bengaluru, India.
+              I work as a Software Engineer and aspire to become a Quant, based
+              in Bengaluru, India.
             </p>
             <p className="text-gray-600 hover:text-rose-700 mb-10">
               I create open source projects and write about financial
@@ -47,6 +45,180 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
+        <section className="pt-0 lg:pt-[90px] pb-10 lg:pb-20">
+          <div className="container">
+            <div className="flex flex-wrap justify-center -mx-4">
+              <div className="w-full px-4">
+                <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+                  <div className="text-center">
+                    <p className="text-sky-600 text-4xl font-medium">My Projects</p>
+                  </div>
+                  <p className="text-base text-body-color mt-6 font-sans">
+                    Here are my personal projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-4">
+              <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                <div className="max-w-[370px] mx-auto mb-10">
+                  <div className="rounded overflow-hidden mb-8">
+                    <Image
+                      src="/download.jpg"
+                      alt="image"
+                      width={500}
+                      height={800}
+                    />
+                  </div>
+                  <div>
+                    <span
+                      className="
+                     bg-primary
+                     rounded
+                     inline-block
+                     text-center
+                     py-1
+                     px-4
+                     text-xs
+                     leading-loose
+                     font-semibold
+                     text-white
+                     mb-5
+                     "
+                    >
+                      July 21, 2023
+                    </span>
+                    <h3>
+                      <a
+                        href="javascript:void(0)"
+                        className="
+                        font-semibold
+                        text-xl
+                        sm:text-2xl
+                        lg:text-xl
+                        xl:text-2xl
+                        mb-4
+                        inline-block
+                        text-dark
+                        hover:text-primary
+                        "
+                      >
+                        Mario Bros
+                      </a>
+                    </h3>
+                    <p className="text-base text-body-color">
+                      created 90 kids fav video game Mario.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                <div className="max-w-[370px] mx-auto mb-10">
+                  <div className="rounded overflow-hidden mb-8 border-gray-400">
+                    <Image
+                      src="/download.jpg"
+                      alt="image"
+                      width={500}
+                      height={800}
+                    />
+                  </div>
+                  <div>
+                    <span
+                      className="
+                     bg-primary
+                     rounded
+                     inline-block
+                     text-center
+                     py-1
+                     px-4
+                     text-xs
+                     leading-loose
+                     font-semibold
+                     text-white
+                     mb-5
+                     "
+                    >
+                      Mar 15, 2023
+                    </span>
+                    <h3>
+                      <a
+                        href="javascript:void(0)"
+                        className="
+                        font-semibold
+                        text-xl
+                        sm:text-2xl
+                        lg:text-xl
+                        xl:text-2xl
+                        mb-4
+                        inline-block
+                        text-dark
+                        hover:text-primary
+                        "
+                      >
+                        Airport traffic statistics.
+                      </a>
+                    </h3>
+                    <p className="text-base text-body-color">
+                      EDA on how Covid-19 affected airport traffic.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                <div className="max-w-[370px] mx-auto mb-10">
+                  <div className="rounded overflow-hidden mb-8">
+                    <Image
+                      src="/download.jpg"
+                      alt="image"
+                      width={500}
+                      height={800}
+                    />
+                  </div>
+                  <div>
+                    <span
+                      className="
+                     bg-primary
+                     rounded
+                     inline-block
+                     text-center
+                     py-1
+                     px-4
+                     text-xs
+                     leading-loose
+                     font-semibold
+                     text-white
+                     mb-5
+                     "
+                    >
+                      Jan 05, 2023
+                    </span>
+                    <h3>
+                      <a
+                        href="javascript:void(0)"
+                        className="
+                        font-semibold
+                        text-xl
+                        sm:text-2xl
+                        lg:text-xl
+                        xl:text-2xl
+                        mb-4
+                        inline-block
+                        text-dark
+                        hover:text-primary
+                        "
+                      >
+                        Ecommerce-app
+                      </a>
+                    </h3>
+                    <p className="text-base text-body-color">
+                      Ecommerce webapp.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <style jsx>{`

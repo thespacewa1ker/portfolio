@@ -8,6 +8,7 @@ interface IPropType {
 }
 
 const ArticleList = ({articles}: IPropType) => {
+    // console.log("articlesList",articles)
   return (
     <div className='grid lg:grid-cols-2 grid-gap gap-14 mt-16 ml-4'>
         {articles.map((article,idx) => {

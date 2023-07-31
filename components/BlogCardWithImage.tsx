@@ -15,10 +15,11 @@ const BlogCardWithImage = ({ article }: IPropType) => {
 
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md flex items-center h-52 justify-between ">
-      <Link href="#">
+      <Link href={`/article/${article.attributes.Slug}`}>
         <div className="flex flex-col justify-center flex-1 p-6">
           <span className="text-xl text-white font-semibold">
             {article.attributes.Title}
+            
           </span>
         </div>
       </Link>

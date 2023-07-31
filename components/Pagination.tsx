@@ -8,10 +8,11 @@ interface IPropType {
     redirectUrl?: string;
 }
 
-const Pagination = ({ page, pageCount, redirectUrl = '/blogs' }: IPropType) => {
-    const router = useRouter();
+type pageNumber=Number;
 
-    console.log("router",router);
+const Pagination = ({ page, pageCount, redirectUrl = '/blogs/' }: IPropType) => {
+    
+    const router = useRouter();
 
     const isNextDisabled = (): boolean => {
         return page >= pageCount;
@@ -21,7 +22,8 @@ const Pagination = ({ page, pageCount, redirectUrl = '/blogs' }: IPropType) => {
         return page <= 1;
     };
 
-    const handlePagination = async (direction: TDirection) => {
+    const handlePagination = (direction: TDirection) => {
+        
         if (direction === 1 && isNextDisabled()) {
             return;
         }
@@ -29,32 +31,37 @@ const Pagination = ({ page, pageCount, redirectUrl = '/blogs' }: IPropType) => {
         if (direction === -1 && isPrevDisabled()) {
             return;
         }
+
         const queryString = qs.stringify({
             ...router.query,
             page: page + direction,
         });
 
-        console.log("queryString", queryString);
+
         router.push(`${redirectUrl}?${queryString}`);
     };
+
     return (
         <div className="flex justify-center mt-24">
             <button
-                onClick={() => handlePagination(-1)}
+                onClick={() => handlePagination(-1)} // Previous button with direction -1
                 className={`${'bg-sky-500 hover:bg-pink-400 text-grey-800  py-2 px-4 mr-6 border rounded'} ${
                     isPrevDisabled() ? 'disabled' : ''
-                }`}>
+                }`}
+            >
                 Previous
             </button>
             <button
-                onClick={() => handlePagination(1)}
+                onClick={() => handlePagination(1)} // Next button with direction 1
                 className={`${'bg-sky-500 hover:bg-pink-400 text-grey-800  py-2 px-4 border rounded'} ${
                     isNextDisabled() ? 'disabled' : ''
-                }`}>
+                }`}
+            >
                 Next
             </button>
         </div>
     );
 };
+
 
 export default Pagination;

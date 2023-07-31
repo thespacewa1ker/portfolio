@@ -52,7 +52,15 @@ export interface IAuthor {
                         formats: {
                             thumbnail: {
                                 url: string;
+                            },
+                            large:{
+                                url: string
+                            },
+                            small:{
+                                url: string
                             }
+                            
+                        
                         }
                     };
                 }
@@ -82,7 +90,7 @@ export interface ICollectionResponse<T> {
 }
 
 
-export type TDirection = 1 | -1;
+export type TDirection = number;
 
 
 export interface IQueryOptions {
@@ -93,4 +101,15 @@ export interface IQueryOptions {
         page: number;
         pageSize: number;
     };
+}
+
+
+export interface IQueryOptions{
+    sort:any,
+    filters:any,
+    pagination:{
+        page:number,
+        pageSize:number
+    }
+    populate:any
 }

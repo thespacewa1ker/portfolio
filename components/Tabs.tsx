@@ -5,14 +5,11 @@ import { ICategory } from '../types';
 
 interface IPropType {
     categories: ICategory[];
+    handleOnSearch: (query: string) => void;
     
 }
-const Tabs = ({ categories }: IPropType) => {
+const Tabs = ({ categories,handleOnSearch }: IPropType) => {
     const router = useRouter();
-
-    const handleOnSearch = (value: string) => {
-      console.log("handling search") ;
-    }
 
     const isActiveLink = (category: ICategory) => {
         return category.attributes.Slug === router.query.category;

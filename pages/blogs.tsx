@@ -1,7 +1,7 @@
 import { fetchArticles, fetchCategories } from "@/apis";
 import ArticleList from "@/components/ArticleList";
 import Tabs from "@/components/Tabs";
-import { IArticle, ICategory, ICollectionResponse, IPagination } from "@/types";
+import { IArticle, ICategory, ICollectionResponse, IPagination, IQueryOptions } from "@/types";
 import { AxiosResponse } from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
@@ -9,22 +9,26 @@ import React from "react";
 import qs from "qs";
 import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
+import { debounce } from "@/utils";
 
 interface IPropTypes {
   categories: ICategory[];
   articles: IArticle[];
-  pagination: IPagination;
+  paginationItems: {
+    pagination:IPagination;
+  };
 }
 
-const Blogs: NextPage<IPropTypes> = ({ categories, articles, pagination }) => {
+const Blogs: NextPage<IPropTypes> = ({ categories, articles, paginationItems }) => {
 
   const router = useRouter();
+  const {page,pageCount} = paginationItems.pagination;
   
-  const {page , pageCount} = pagination;
 
   const handleSearch = (query: string) => {
-    router.push(`/?search=${query}`);
-};
+    router.push(`blogs/?search=${query}`);
+  };
+
 
     return (
         <div>
@@ -34,7 +38,7 @@ const Blogs: NextPage<IPropTypes> = ({ categories, articles, pagination }) => {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Tabs categories={categories} />
+          <Tabs categories={categories} handleOnSearch={debounce(handleSearch,150)} />
           <ArticleList articles={articles} />
           <Pagination page={page} pageCount={pageCount}/>
     
@@ -58,20 +62,25 @@ const Blogs: NextPage<IPropTypes> = ({ categories, articles, pagination }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
 
-  console.log("query page",query.page)
-  const options = {
+  const options:Partial<IQueryOptions> = {
     populate: ["author.avatar", "Image.data.formats"],
     sort: ["id:desc"],
     pagination: {
-      page: query.page ? query.page : 1,
-      pageSize: 1,
+      page: query.page ? +query.page : 1,
+      pageSize: 4,
     }
   };
 
-  console.log(options.pagination.page)
+  if (query.search){
+    options.filters = {
+      Title:{
+        $containsi:query.search,
+      }
+    }
+  }
 
   const queryString = qs.stringify(options);
-  // console.log("string: ", queryString);
+
 
   const {
     data: categoryItems,
@@ -83,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
     props: {
       categories: categoryItems.data,
       articles: articleItems.data,
-      pagination: articleItems.meta,
+      paginationItems: articleItems.meta,
     },
   };
 };

@@ -1,11 +1,13 @@
 import { fetchArticles, fetchCategories } from "@/apis";
 import ArticleList from "@/components/ArticleList";
+import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
-import { IArticle, ICategory, ICollectionResponse, IPagination } from "@/types";
+import { IArticle, ICategory, ICollectionResponse, IPagination, IQueryOptions } from "@/types";
 import { capitaliseFirstLetter, formatSlug } from "@/utils";
 import { AxiosResponse } from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import qs from "qs";
 import React from "react";
 
@@ -21,10 +23,22 @@ interface IPropType {
   slug: string;
 }
 
-const category = ({ categories, articles,slug }: IPropType) => {
+const Category = ({ categories, articles,slug }: IPropType) => {
+
+  const { page, pageCount } = articles.pagination;
+  const router = useRouter();
+
+  const {category: categorySlug} = router.query;
+
+  const handleSearch = (query: string) => {
+    router.push(`/category/${categorySlug}/?search=${query}`);
+  };
+
   const formattedCategory = () => {
     return capitaliseFirstLetter(formatSlug(slug));
   };
+
+
 
   return (
     <div>
@@ -34,8 +48,9 @@ const category = ({ categories, articles,slug }: IPropType) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Tabs categories={categories.items} />
+      <Tabs categories={categories.items} handleOnSearch={handleSearch} />
       <ArticleList articles={articles.items} />
+      <Pagination page={page} pageCount={pageCount} redirectUrl={`/category/${categorySlug}`}/>
 
       <style jsx>{`
         div {
@@ -55,8 +70,8 @@ const category = ({ categories, articles,slug }: IPropType) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  console.log("Query", query.category);
-  const options = {
+
+  const options: Partial<IQueryOptions> = {
     populate: ["author.avatar"],
     sort: ["id:desc"],
     filters: {
@@ -65,25 +80,31 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       },
     },
     pagination: {
-      page: query.page ? query.page : 1,
-      pageSize: 1,
+      page: query.page ? +query.page : 1,
+      pageSize: 4,
   },
   };
 
- 
+  if (query.search){
+    options.filters = {
+      Title:{
+        $containsi:query.search,
+      }
+    }
+  }
+
 
   const queryString = qs.stringify(options);
 
   const { data: articleItems }: AxiosResponse<ICollectionResponse<IArticle[]>> =
     await fetchArticles(queryString);
 
-  console.log(queryString);
   const {
     data: categoryItems,
   }: AxiosResponse<ICollectionResponse<ICategory[]>> = await fetchCategories();
 
   // console.log("categorypage",categoryItems);
-  console.log("articlepage", articleItems);
+ 
   return {
     props: {
       categories: {
@@ -100,4 +121,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
-export default category;
+export default Category;
