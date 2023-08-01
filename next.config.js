@@ -2,7 +2,7 @@
 const nextConfig = {
   // reactStrictMode: true,
   images:{
-    domains: ['127.0.0.1','cdn.tailgrids.com']
+    domains: ['127.0.0.1','cdn.tailgrids.com','res.cloudinary.com']
   },
 }
 

@@ -51,7 +51,9 @@ const Home: NextPage = () => {
               <div className="w-full px-4">
                 <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
                   <div className="text-center">
-                    <p className="text-sky-600 text-4xl font-medium">My Projects</p>
+                    <p className="text-sky-600 text-4xl font-medium">
+                      My Projects
+                    </p>
                   </div>
                   <p className="text-base text-body-color mt-6 font-sans">
                     Here are my personal projects.
@@ -73,35 +75,35 @@ const Home: NextPage = () => {
                   <div>
                     <span
                       className="
-                     bg-primary
-                     rounded
-                     inline-block
-                     text-center
-                     py-1
-                     px-4
-                     text-xs
-                     leading-loose
-                     font-semibold
-                     text-white
-                     mb-5
-                     "
+                   bg-primary
+                   rounded
+                   inline-block
+                   text-center
+                   py-1
+                   px-4
+                   text-xs
+                   leading-loose
+                   font-semibold
+                   text-white
+                   mb-5
+                   "
                     >
                       July 21, 2023
                     </span>
                     <h3>
                       <a
-                        href="javascript:void(0)"
+                        href="#"
                         className="
-                        font-semibold
-                        text-xl
-                        sm:text-2xl
-                        lg:text-xl
-                        xl:text-2xl
-                        mb-4
-                        inline-block
-                        text-dark
-                        hover:text-primary
-                        "
+                    font-semibold
+                    text-xl
+                    sm:text-2xl
+                    lg:text-xl
+                    xl:text-2xl
+                    mb-4
+                    inline-block
+                    text-dark
+                    hover:text-primary
+                    "
                       >
                         Mario Bros
                       </a>
@@ -125,35 +127,35 @@ const Home: NextPage = () => {
                   <div>
                     <span
                       className="
-                     bg-primary
-                     rounded
-                     inline-block
-                     text-center
-                     py-1
-                     px-4
-                     text-xs
-                     leading-loose
-                     font-semibold
-                     text-white
-                     mb-5
-                     "
+                   bg-primary
+                   rounded
+                   inline-block
+                   text-center
+                   py-1
+                   px-4
+                   text-xs
+                   leading-loose
+                   font-semibold
+                   text-white
+                   mb-5
+                   "
                     >
                       Mar 15, 2023
                     </span>
                     <h3>
                       <a
-                        href="javascript:void(0)"
+                        href="#"
                         className="
-                        font-semibold
-                        text-xl
-                        sm:text-2xl
-                        lg:text-xl
-                        xl:text-2xl
-                        mb-4
-                        inline-block
-                        text-dark
-                        hover:text-primary
-                        "
+                    font-semibold
+                    text-xl
+                    sm:text-2xl
+                    lg:text-xl
+                    xl:text-2xl
+                    mb-4
+                    inline-block
+                    text-dark
+                    hover:text-primary
+                    "
                       >
                         Airport traffic statistics.
                       </a>
@@ -177,35 +179,35 @@ const Home: NextPage = () => {
                   <div>
                     <span
                       className="
-                     bg-primary
-                     rounded
-                     inline-block
-                     text-center
-                     py-1
-                     px-4
-                     text-xs
-                     leading-loose
-                     font-semibold
-                     text-white
-                     mb-5
-                     "
+                   bg-primary
+                   rounded
+                   inline-block
+                   text-center
+                   py-1
+                   px-4
+                   text-xs
+                   leading-loose
+                   font-semibold
+                   text-white
+                   mb-5
+                   "
                     >
                       Jan 05, 2023
                     </span>
                     <h3>
                       <a
-                        href="javascript:void(0)"
+                        href="#"
                         className="
-                        font-semibold
-                        text-xl
-                        sm:text-2xl
-                        lg:text-xl
-                        xl:text-2xl
-                        mb-4
-                        inline-block
-                        text-dark
-                        hover:text-primary
-                        "
+                    font-semibold
+                    text-xl
+                    sm:text-2xl
+                    lg:text-xl
+                    xl:text-2xl
+                    mb-4
+                    inline-block
+                    text-dark
+                    hover:text-primary
+                    "
                       >
                         Ecommerce-app
                       </a>
