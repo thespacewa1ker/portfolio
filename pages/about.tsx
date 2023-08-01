@@ -176,7 +176,7 @@ const about = () => {
                         <span className="text-sky-600 font-bold mr-2 hover:text-pink-500">
                           @ Microsoft.
                         </span>
-                        <span className="text-bold">May'22 - July'22</span>
+                        <span className="text-bold">May-22 - July-22</span>
                       </p>
                     </div>
                     <div>
